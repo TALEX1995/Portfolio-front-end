@@ -1,20 +1,26 @@
 <script>
 import axios from 'axios';
-const endpoint = 'http://127.0.0.1:8000/api/projects/';
 import AppHeader from './components/AppHeader.vue';
 import ProjectCard from './components/ProjectCard.vue';
+import AppPagination from './components/AppPagination.vue';
 export default {
   // Components
-  components: { AppHeader, ProjectCard },
+  components: { AppHeader, ProjectCard, AppPagination },
   // Data
   data: () => ({
-    projects: [],
+    projects: {
+      data: [],
+      links: [],
+    }
   }),
   // Methods
   methods: {
-    fetchProjects() {
+    fetchProjects(endpoint = 'http://127.0.0.1:8000/api/projects/') {
       axios.get(endpoint).then(res => {
-        this.projects = res.data.data
+        this.projects = {
+          data: res.data.data,
+          links: res.data.links
+        }
       })
     }
   },
@@ -29,9 +35,11 @@ export default {
 <template>
   <AppHeader />
   <main class="container my-3">
+    <!-- Project Card -->
+    <ProjectCard v-for="project in projects.data" :key="project.id" :project="project" />
 
-    <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
-
+    <!-- pagination -->
+    <AppPagination :links="projects.links" @change-page="fetchProjects" />
   </main>
 </template>
 
