@@ -2,9 +2,10 @@
 import axios from 'axios';
 const endpoint = 'http://127.0.0.1:8000/api/projects/';
 import AppHeader from './components/AppHeader.vue';
+import ProjectCard from './components/ProjectCard.vue';
 export default {
   // Components
-  components: { AppHeader },
+  components: { AppHeader, ProjectCard },
   // Data
   data: () => ({
     projects: [],
@@ -13,7 +14,7 @@ export default {
   methods: {
     fetchProjects() {
       axios.get(endpoint).then(res => {
-        console.log(res.data)
+        this.projects = res.data.data
       })
     }
   },
@@ -29,6 +30,7 @@ export default {
   <AppHeader />
   <main class="container my-3">
 
+    <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
 
   </main>
 </template>
