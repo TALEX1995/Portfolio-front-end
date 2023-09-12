@@ -31,6 +31,7 @@ export default {
 
 
 <template>
+    <h1>I miei Progetti</h1>
     <!-- Project Card -->
     <ProjectCard v-for="project in projects.data" :key="project.id" :project="project" />
 

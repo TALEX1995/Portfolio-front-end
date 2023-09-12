@@ -6,9 +6,10 @@ import ProjectDetailPage from '../pages/ProjectDetailPage.vue';
 // Create Router
 const router = createRouter({
     history: createWebHistory(),
+    linkExactActiveClass: 'active',
     routes: [
         {path: '/', name: 'home', component: HomePage},
-        {path: '/project', name: 'project-detail', component: ProjectDetailPage},
+        {path: '/project/:id', name: 'project-detail', component: ProjectDetailPage},
         {path: '/:pathMatch(.*)*', redirect: '/'},
     ]
 });

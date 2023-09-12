@@ -1,6 +1,6 @@
 <script>
 export default {
-    props: { project: Object },
+    props: { project: Object, isDetail: Boolean },
     methods: {
         projectDate(date) {
             const newDate = new Date(date);
@@ -39,6 +39,14 @@ export default {
                         projectDate(project.updated_at)
                     }}</small></p>
                 </div>
+            </div>
+            <div class="col-12 d-flex justify-content-end">
+                <RouterLink v-if="isDetail" class="btn btn-secondary m-3" :to="{ name: 'home' }">Torna alla lista dei
+                    Progetti
+                </RouterLink>
+                <RouterLink v-else class="btn btn-primary m-3" :to="{ name: 'project-detail', params: { id: project.id } }">
+                    Dettagli progetto
+                </RouterLink>
             </div>
         </div>
     </div>
