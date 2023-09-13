@@ -18,6 +18,10 @@ export default {
                         <li class="nav-item">
                             <RouterLink class="nav-link active" aria-current="page" :to="{ name: 'home' }">Home</RouterLink>
                         </li>
+                        <li class="nav-item">
+                            <RouterLink class="nav-link active" aria-current="page" :to="{ name: 'contact' }">Contattami
+                            </RouterLink>
+                        </li>
                     </ul>
                 </div>
             </div>
