@@ -5,12 +5,22 @@ const emptyForm = { email: '', cellNumb: '', message: '' };
 export default {
     name: 'ContactMe',
     data: () => ({
-        form: emptyForm
+        form: {
+            email: '',
+            cellNumb: '',
+            message: ''
+        }
     }),
     methods: {
         sendForm() {
             axios.post(endpoint, this.form)
-                .then(() => { this.form = emptyForm })
+                .then(() => {
+                    this.form = {
+                        email: '',
+                        cellNumb: '',
+                        message: ''
+                    }
+                })
                 .catch(err => { console.error(err) })
 
         }
